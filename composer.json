@@ -11,7 +11,6 @@
 	},
 	"require":{
 		"php":">=5.5.12",
-		"php-activerecord/php-activerecord":"dev-master",
 		"symfony/var-dumper":"3.0.*@dev"
 	}
 
