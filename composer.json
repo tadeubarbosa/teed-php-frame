@@ -6,8 +6,8 @@
 	],
 	"autoload":
 	{
-		"psr-4":{"TeedPHP":"src/"},
-		"classmap":["src/Helpers/","src/Brain/"]
+		"psr-4":{"TeedPHP\\":"src/"},
+		"classmap":["src/Traits/","src/Helpers/","src/Brain/"]
 	},
 	"require":{
 		"php":">=5.5.12",
