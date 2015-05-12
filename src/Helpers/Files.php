@@ -3,12 +3,19 @@
 	class Files
 	{
 
-		public static function getData( $file_name )
+		static function getData( $file_name, $other=null )
 		{
-			return self::getFile( App::getDataDir($file_name), false, true );
+
+			if( !$other ):
+
+				$file_name = App::getDataDir($file_name);
+
+			endif;
+
+			return self::getFile( $file_name, false, true );
 		}
 
-		public static function getFile( $file_name, $text=null, $vars=null )
+		static function getFile( $file_name, $text=null, $vars=null )
 		{
 
 			if( !file_exists($file_name) || !is_file($file_name)) return;
@@ -47,7 +54,7 @@
 
 		}
 
-		public static function putFile( $file, $data, $type='a+' )
+		static function putFile( $file, $data, $type='a+' )
 		{
 
 			if(is_array($data)||is_object($data)):
@@ -65,7 +72,7 @@
 			return;
 		}
 
-		public static function getPaths( $dir )
+		static function getPaths( $dir )
 		{
 
 			$result = [];
@@ -96,7 +103,7 @@
 
 		}
 
-		public static function createPath( $path_name )
+		static function createPath( $path_name )
 		{
 
 			$pathinfo = pathinfo($path_name);
@@ -121,7 +128,7 @@
 
 		}
 
-		public static function removeDir( $dirname )
+		static function removeDir( $dirname )
 		{
 
 			if(is_dir($dirname)) $dir_handle = opendir($dirname);

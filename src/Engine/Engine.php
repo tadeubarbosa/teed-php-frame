@@ -5,7 +5,7 @@
 
 		use \Traits\Functions;
 
-		public static function verifyDifference( $file, $other )
+		static function verifyDifference( $file, $other )
 		{
 
 			if( !file_exists( $other ) ):
@@ -24,12 +24,12 @@
 
 		}
 
-		public static function cacheTemplate( $file_name, $body=null )
+		static function cacheTemplate( $file_name, $body=null )
 		{
 			include self::cacheFile( $file_name, $body );
 		}
 
-		public static function cacheFile( $file_name, $body=null )
+		static function cacheFile( $file_name, $body=null )
 		{
 
 			$slug = '';
@@ -55,7 +55,7 @@
 
 		}
 
-		public static function renderTemplate( $file, $body=null )
+		static function renderTemplate( $file, $body=null )
 		{
 
 			$string = Files::getFile( $file );
@@ -68,7 +68,7 @@
 
 			endif;
 
-			$variables = Files::getData('template-variable.php');
+			$variables = Files::getData( App::getTeedSrcDir('Engine/Variables.php'), true );
 
 			foreach( $variables as $value ):
 
@@ -86,12 +86,12 @@
 
 		}
 
-		public static function setContent( $content, $function )
+		static function setContent( $content, $function )
 		{
 			self::$data['content'][$content] = $function;
 		}
 
-		public static function getContent( $content )
+		static function getContent( $content )
 		{
 
 			if( !isset( self::$data['content'][$content] ) ) return;
@@ -102,12 +102,12 @@
 
 		}
 
-		public static function setVariable( $name, $str )
+		static function setVariable( $name, $str )
 		{
 			self::$data['variables'][$name] = $str;
 		}
 
-		public static function getVariable( $name, $nullValue=null )
+		static function getVariable( $name, $nullValue=null )
 		{
 
 			if( !isset( self::$data['variables'][$name] ) ):
@@ -131,14 +131,14 @@
 			endif;
 		}
 
-		public static function getVariables()
+		static function getVariables()
 		{
 			return self::$data['variables'];
 		}
 
 		//
 
-		public static function includeFile( $file )
+		static function includeFile( $file )
 		{
 
 			if( file_exists($file) ):
@@ -154,7 +154,7 @@
 
 		//
 
-		public static function includePartial( $file )
+		static function includePartial( $file )
 		{
 
 			$file = App::getTemplateType( "{$file}.php" );

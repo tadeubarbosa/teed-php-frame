@@ -56,6 +56,14 @@
 
 			self::setUri( str_replace( 'index.php', '', $_SERVER['SCRIPT_FILENAME'] ) );
 
+			//
+
+			self::setVendorDir( self::getUri('vendor/') );
+
+				self::setTeedDir( self::getVendorDir('tadeubarbosa/teed-php-frame/') );
+
+					self::setTeedSrcDir( self::getTeedDir('src/') );
+
 			self::setWWWDir( self::getBase('www/') );
 
 				self::setImageDir( self::getWWWDir('images/') );
@@ -68,9 +76,7 @@
 
 			self::setSrcDir( self::getUri('src/') );
 
-			self::setAppDir( self::getSrcDir('App/') );
-
-				self::setDataDir( self::getAppDir('data/') );
+			self::setDataDir( self::getSrcDir('data/') );
 
 			self::setBrainDir( self::getSrcDir('Brain/') );
 
