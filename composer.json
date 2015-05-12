@@ -8,10 +8,5 @@
 	{
 		"psr-4":{"TeedPHP\\":"src/"},
 		"classmap":["src/Traits/","src/Helpers/","src/Brain/"]
-	},
-	"require":{
-		"php":">=5.5.12",
-		"symfony/var-dumper":"3.0.*@dev"
 	}
-
 }
