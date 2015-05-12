@@ -2,7 +2,10 @@
 	"name": "tadeubarbosa/teed-php-frame",
 	"authors":
 	[
-		{"name":"Tadeu Barbosa","email":"tadeufbarbosa@gmail.com"}
+		{
+			"name":"Tadeu Barbosa",
+			"email":"tadeufbarbosa@gmail.com"
+		}
 	],
 	"autoload":
 	{
@@ -14,12 +17,8 @@
 		[
 			"src/Traits/",
 			"src/Helpers/",
-			"src/Brain/"
-		],
-		"files":
-		[
-			"src/Engine/Engine.php",
-			"src/Engine/Variables.php"
+			"src/Brain/",
+			"src/Engine/"
 		]
 	}
 }
