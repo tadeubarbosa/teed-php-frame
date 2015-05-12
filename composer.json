@@ -14,12 +14,8 @@
 		[
 			"src/Traits/",
 			"src/Helpers/",
-			"src/Brain/"
-		],
-		"files":
-		[
-			"src/Engine/Engine.php",
-			"src/Engine/Variables.php"
+			"src/Brain/",
+			"src/Engine/"
 		]
 	}
 }
