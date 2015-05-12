@@ -12,25 +12,19 @@
 
 			//
 
-			if( String::countExplode( '/', $_SERVER['SCRIPT_NAME'] ) == 4 ):
+			if(  String::countExplode( '/', $_SERVER['SCRIPT_NAME'] ) > 2  ):
 
-				$scriptFileName = str_replace( '/index.php', '', $_SERVER['SCRIPT_NAME'] );
+				if( String::countExplode( '/', $_SERVER['SCRIPT_NAME'] ) == 3 ):
 
-				$scriptFileName = substr( $scriptFileName, 1, strlen($scriptFileName) );
+					$scriptFileName = String::getFirstExplodeString( '/', trim( $_SERVER['SCRIPT_NAME'], '/' ) );
 
-				self::setBase( Url::addHttpIntoUrl( sprintf( '%s/%s/', $_SERVER['SERVER_NAME'], $scriptFileName ) ) );
+				elseif( String::countExplode( '/', $_SERVER['SCRIPT_NAME'] ) == 4 ):
 
-				$branch = trim( str_replace( $scriptFileName, '', $_SERVER['REQUEST_URI'] ), '/' );
+					$scriptFileName = str_replace( '/index.php', '', $_SERVER['SCRIPT_NAME'] );
 
-				$branch = String::getFirstExplodeString( '.', $branch );
+					$scriptFileName = substr( $scriptFileName, 1, strlen($scriptFileName) );
 
-				$branch = String::getFirstExplodeString( '?', $branch );
-
-				self::setBranch( $branch );
-
-			elseif( String::countExplode( '/', $_SERVER['SCRIPT_NAME'] ) == 3 ):
-
-				$scriptFileName = String::getFirstExplodeString( '/', trim( $_SERVER['SCRIPT_NAME'], '/' ) );
+				endif;
 
 				self::setBase( Url::addHttpIntoUrl( sprintf( '%s/%s/', $_SERVER['SERVER_NAME'], $scriptFileName ) ) );
 
@@ -107,7 +101,7 @@
 
 				$route->data[] = self::getBranch();
 
-				$route->controller = ['Controller\\Error','getFileNotFound'];
+				$route->controller = ['Error','getFileNotFound'];
 
 			else:
 
@@ -121,19 +115,19 @@
 
 				endif;
 
-				$route->controller[0] = "Controller\\{$route->controller[0]}";
+				$route->controller[0] = "{$route->controller[0]}";
 
 				if( !class_exists( $route->controller[0] ) ):
 
 					$route->data[] = self::getBranch();
 
-					$route->controller = ['Controller\\Error','getControllerNotFound'];
+					$route->controller = ['Error','getControllerNotFound'];
 
 				elseif( !method_exists( $route->controller[0], $route->controller[1] ) ):
 
 					$route->data[] = self::getBranch();
 
-					$route->controller = ['Controller\\Error','getMethodNotFound'];
+					$route->controller = ['Error','getMethodNotFound'];
 
 				endif;
 
@@ -147,15 +141,7 @@
 
 			if( count( \Input::getAllData() ) ):
 
-				$route->data += \Input::getAllData();
-
-			endif;
-
-			if( App::getMethod() == 'post' ):
-
-				dump($_POST);
-
-				return;
+				$route->data = array_merge( $route->data, \Input::getAllData() );
 
 			endif;
 

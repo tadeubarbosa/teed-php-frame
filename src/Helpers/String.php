@@ -31,6 +31,43 @@
 			return end( $array );
 		}
 
+		static function getData( $array )
+		{
+
+			$response = [];
+
+			$data = func_get_args();
+
+			array_shift( $data );
+
+			if( is_array($array) ):
+
+				foreach( $array as &$row ):
+
+					$attributes = (object) $row->attributes();
+
+					foreach( $data as $value ):
+
+						$attributes->$value = $row->$value->attributes();
+
+					endforeach;
+
+					$row = $attributes;
+
+				endforeach;
+
+				$response = $array;
+
+			else:
+
+				$response = $array->attributes();
+
+			endif;
+
+			return $response;
+
+		}
+
 		public static function php( $fn )
 		{
 			return "<?php $fn ?>";

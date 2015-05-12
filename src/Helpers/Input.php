@@ -7,7 +7,7 @@
 
 		public static function start( $get, $post )
 		{
-			array_merge( self::$data, $get, $post );
+			self::$data = array_merge( self::$data, $get, $post );
 		}
 
 		public static function getAllData()

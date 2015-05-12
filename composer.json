@@ -6,7 +6,20 @@
 	],
 	"autoload":
 	{
-		"psr-4":{"TeedPHP\\":"src/"},
-		"classmap":["src/Traits/","src/Helpers/","src/Brain/"]
+		"psr-4":
+		{
+			"":"src/"
+		},
+		"classmap":
+		[
+			"src/Traits/",
+			"src/Helpers/",
+			"src/Brain/"
+		],
+		"files":
+		[
+			"src/Engine/Engine.php",
+			"src/Engine/Variables.php"
+		]
 	}
 }
