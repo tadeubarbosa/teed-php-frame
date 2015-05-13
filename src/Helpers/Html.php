@@ -3,18 +3,14 @@
 	class Html
 	{
 
-		public static $content;
-
-		public static $name;
-
-		public static $attrs = [];
+		public static $data = [];
 
 		public static function __callStatic( $meth, $args )
 		{
 
-			self::$name = $meth;
+			self::$data['name'] = $meth;
 
-			self::$content = isset($args[0])? $args[0]: null;
+			self::$data['content'] = isset($args[0])? $args[0]: null;
 
 			return new static;
 		}
@@ -22,7 +18,7 @@
 		public function __call( $meth, $args )
 		{
 
-			self::$attrs[ $meth ] = $args[0];
+			self::$data['attrs'][ $meth ] = $args[0];
 
 			return new static;
 		}
@@ -32,11 +28,11 @@
 
 			$attrs = '';
 
-			if( count( self::$attrs ) ):
+			if( count( self::$data['attrs'] ) ):
 
 				$attrs = ' ';
 
-				foreach( self::$attrs as $key => $value ):
+				foreach( self::$data['attrs'] as $key => $value ):
 
 					$attrs .= "{$key}=\"{$value}\" ";
 
@@ -46,7 +42,12 @@
 
 			endif;
 
-			return sprintf("<%s%s>%s</%s>", self::$name, $attrs, self::$content, self::$name);
+			$return = sprintf("<%s%s>%s</%s>", self::$data['name'], $attrs, self::$data['content'], self::$data['name']);
+
+			self::$data = [];
+
+			return $return;
+
 		}
 
 	}
