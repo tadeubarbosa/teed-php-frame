@@ -48,6 +48,8 @@
 
 					foreach( $data as $value ):
 
+						if( !$row->$value ) continue;
+
 						$attributes->$value = $row->$value->attributes();
 
 					endforeach;
@@ -60,7 +62,17 @@
 
 			else:
 
-				$response = $array->attributes();
+				$attributes = $array->attributes();
+
+				foreach( $data as $key ):
+
+					if( !$array->$key->attributes() ) continue;
+
+					$attributes[ $key ] = $array->$key->attributes();
+
+				endforeach;
+
+				$response = $attributes;
 
 			endif;
 

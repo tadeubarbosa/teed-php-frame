@@ -20,7 +20,13 @@
 
 		public static function redirect( $url )
 		{
-			return header("Location: {$url}");
+
+			ob_start();
+
+			header("Location: {$url}");
+
+			ob_flush();
+
 		}
 
 		public static function route()
@@ -35,9 +41,9 @@
 		public static function returnRoute( $data )
 		{
 
-			if( !isset( \Route::getRoutes()[ $data[0] ] ) ) return;
+			if( !isset( Route::getRoutes()[ $data[0] ] ) ) return App::getBase();
 
-			$route = \Route::getRoutes()[ $data[0] ];
+			$route = Route::getRoutes()[ $data[0] ];
 
 			$data = array_slice( $data, 1 );
 
@@ -84,6 +90,8 @@
 				endif;
 
 			endif;
+
+			return App::getBase();
 
 		}
 
