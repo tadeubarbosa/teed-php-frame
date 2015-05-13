@@ -44,13 +44,13 @@
 
 				foreach( $array as &$row ):
 
-					$attributes = (object) $row->attributes();
+					$attributes = (object) Response::utf8( $row->attributes() );
 
 					foreach( $data as $value ):
 
 						if( !$row->$value ) continue;
 
-						$attributes->$value = $row->$value->attributes();
+						$attributes->$value = Response::utf8( $row->$value->attributes() );
 
 					endforeach;
 
@@ -68,7 +68,7 @@
 
 					if( !$array->$key->attributes() ) continue;
 
-					$attributes[ $key ] = $array->$key->attributes();
+					$attributes[ $key ] = Response::utf8( $array->$key->attributes() );
 
 				endforeach;
 

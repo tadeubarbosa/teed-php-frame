@@ -5,7 +5,7 @@
 
 		static function json( $array )
 		{
-			echo json_encode( self::utf8( $array ) );
+			echo json_encode( $array );
 		}
 
 		static function utf8($input)
