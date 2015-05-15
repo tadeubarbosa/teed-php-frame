@@ -78,23 +78,13 @@
 
 			self::setDataDir( self::getSrcDir('data/') );
 
-			self::setBrainDir( self::getSrcDir('Brain/') );
+			self::setViewsDir( self::getSrcDir('views/') );
 
-			self::setControllerDir( self::getSrcDir('Controller/') );
-
-			self::setCoreDir( self::getSrcDir('Core/') );
-
-				self::setViewsDir( self::getCoreDir('views/') );
-
-				self::setTemplateDir( self::getCoreDir('templates/') );
+			self::setTemplateDir( self::getSrcDir('templates/') );
 
 				self::setTemplateType( self::getTemplateDir('master/') );
 
-			self::setCacheDir( App::getCoreDir('cache/') );
-
-			self::setHelpersDir( self::getSrcDir('Helpers/') );
-
-			self::setTraitsDir( self::getSrcDir('Traits/') );
+			self::setCacheDir( self::getSrcDir('cache/') );
 
 		}
 
