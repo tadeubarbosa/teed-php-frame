@@ -22,7 +22,8 @@
 		],
 		"files":
 		[
-			"src/Config/database.php"
+			"src/Config/database.php",
+			"src/Config/start.php"
 		]
 	}
 }
