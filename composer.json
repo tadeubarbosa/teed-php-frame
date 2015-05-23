@@ -19,10 +19,6 @@
 			"src/Helpers/",
 			"src/Brain/",
 			"src/Engine/"
-		],
-		"files":
-		[
-			"src/Config/database.php"
 		]
 	}
 }
