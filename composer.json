@@ -19,7 +19,7 @@
 			"src/Helpers/",
 			"src/Brain/",
 			"src/Engine/",
-			"src/Library/",
+			"src/Library/"
 		]
 	}
 }
