@@ -91,6 +91,10 @@
 		static function initTemplateRouting()
 		{
 
+			self::debug();
+
+			//
+
 			$route = new stdClass;
 
 			if( !count( Route::getRoute() ) ):
@@ -143,14 +147,12 @@
 
 			call_user_func_array( implode( '::', $route->controller ), $route->data );
 
-			self::debug();
-
 		}
 
 		static function debug()
 		{
 
-			if( getenv('enviroment') == 'local' ):
+			if( Files::getData('enviroment.php')[getenv('enviroment')]['debug'] ):
 
 				require_once App::getTeedSrcDir('Library/PHPError/php_error.php');
 
