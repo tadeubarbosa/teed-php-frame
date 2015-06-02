@@ -152,7 +152,7 @@
 		static function debug()
 		{
 
-			if( Files::getData('enviroment.php')[App::getEnv()]['debug'] ):
+			if( App::getEnv()['debug'] ):
 
 				require_once App::getTeedSrcDir('Library/PHPError/php_error.php');
 

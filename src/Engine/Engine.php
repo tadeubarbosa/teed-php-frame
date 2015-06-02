@@ -42,10 +42,14 @@
 
 				$file = self::renderTemplate( $file_name, $body );
 
-				$file = preg_replace('/<!--([^\[|(<!)].*)/', '', $file);
-				$file = preg_replace('/(?<!\S)\/\/\s*[^\r\n]*/', '', $file);
-				$file = preg_replace('/\s{2,}/', '', $file);
-				$file = preg_replace('/(\r?\n)/', '', $file);
+				if( App::getEnv()['compress_output'] ):
+
+					$file = preg_replace('/<!--([^\[|(<!)].*)/', '', $file);
+					$file = preg_replace('/(?<!\S)\/\/\s*[^\r\n]*/', '', $file);
+					$file = preg_replace('/\s{2,}/', '', $file);
+					$file = preg_replace('/(\r?\n)/', '', $file);
+
+				endif;
 
 				Files::putFile( $cached_file, $file, 'w+' );
 
