@@ -7,11 +7,11 @@
 
 		//
 
-		public static $rules = [];
+		static $rules = [];
 
-		public static $route = [];
+		static $route = [];
 
-		public static function insert( $url, $controller='EmptyController@getIndex', $name=null )
+		static function insert( $url, $controller='EmptyController@getIndex', $name=null )
 		{
 
 			$route = new stdClass;
@@ -122,7 +122,7 @@
 
 		}
 
-		public static function group( $url, $controller, $routes )
+		static function group( $url, $controller, $routes )
 		{
 
 			foreach( $routes as $route ):
@@ -134,7 +134,7 @@
 			endforeach;
 		}
 
-		public static function __callStatic( $meth, $args )
+		static function __callStatic( $meth, $args )
 		{
 
 			$action = substr( $meth, 3, strlen( $meth ) );

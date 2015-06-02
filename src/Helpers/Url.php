@@ -3,22 +3,22 @@
 	class Url
 	{
 
-		public static function addHttpIntoUrl( $url )
+		static function addHttpIntoUrl( $url )
 		{
 			return preg_match( '/(http)/', $url )? $url: "http://{$url}";
 		}
 
-		public static function toLocalUrl( $url )
+		static function toLocalUrl( $url )
 		{
 			return $url;
 		}
 
-		public static function toExternalUrl( $url )
+		static function toExternalUrl( $url )
 		{
 			return self::addHttpIntoUrl( $url );
 		}
 
-		public static function redirect( $url )
+		static function redirect( $url )
 		{
 
 			ob_start();
@@ -29,7 +29,7 @@
 
 		}
 
-		public static function route()
+		static function route()
 		{
 
 			$route = self::returnRoute( func_get_args() );
@@ -38,7 +38,7 @@
 
 		}
 
-		public static function returnRoute( $data )
+		static function returnRoute( $data )
 		{
 
 			if( !isset( Route::getRoutes()[ $data[0] ] ) ) return App::getBase();

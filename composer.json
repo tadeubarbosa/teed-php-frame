@@ -18,7 +18,8 @@
 			"src/Traits/",
 			"src/Helpers/",
 			"src/Brain/",
-			"src/Engine/"
+			"src/Engine/",
+			"src/Library/",
 		]
 	}
 }

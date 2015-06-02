@@ -5,9 +5,9 @@
 	trait Functions
 	{
 
-		public static $data = [];
+		static $data = [];
 
-		public static function __callStatic( $meth, $args )
+		static function __callStatic( $meth, $args )
 		{
 
 			$action = substr( $meth, 0, 3 );
@@ -46,7 +46,7 @@
 
 		}
 
-		public static function getAllData()
+		static function getAllData()
 		{
 			return self::$data;
 		}

@@ -3,9 +3,9 @@
 	class Html
 	{
 
-		public static $data = [];
+		static $data = [];
 
-		public static function __callStatic( $meth, $args )
+		static function __callStatic( $meth, $args )
 		{
 
 			self::$data['name'] = $meth;
@@ -15,7 +15,7 @@
 			return new static;
 		}
 
-		public function __call( $meth, $args )
+		function __call( $meth, $args )
 		{
 
 			self::$data['attrs'][ $meth ] = $args[0];
@@ -23,7 +23,7 @@
 			return new static;
 		}
 
-		public function __toString()
+		function __toString()
 		{
 
 			$attrs = '';

@@ -3,19 +3,19 @@
 	class Input
 	{
 
-		public static $data = [];
+		static $data = [];
 
-		public static function start( $get, $post )
+		static function start( $get, $post )
 		{
 			self::$data = array_merge( self::$data, $get, $post );
 		}
 
-		public static function getAllData()
+		static function getAllData()
 		{
 			return self::$data;
 		}
 
-		public static function __callStatic( $meth, $args )
+		static function __callStatic( $meth, $args )
 		{
 
 			$str = $args[0];

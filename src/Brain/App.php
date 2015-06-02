@@ -5,7 +5,7 @@
 
 		use \Traits\Functions;
 
-		public static function setVariables()
+		static function setVariables()
 		{
 
 			$uri = trim( $_SERVER['REQUEST_URI'], '/' );
@@ -88,7 +88,7 @@
 
 		}
 
-		public static function initTemplateRouting()
+		static function initTemplateRouting()
 		{
 
 			$route = new stdClass;
@@ -143,6 +143,20 @@
 
 			call_user_func_array( implode( '::', $route->controller ), $route->data );
 
+			self::debug();
+
+		}
+
+		static function debug()
+		{
+
+			if( getenv('enviroment') == 'local' ):
+
+				require_once App::getTeedSrcDir('Library/PHPError/php_error.php');
+
+				\php_error\reportErrors();
+
+			endif;
 		}
 
 	}

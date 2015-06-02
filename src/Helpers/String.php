@@ -3,28 +3,28 @@
 	class String
 	{
 
-		public static function toSlug( $str )
+		static function toSlug( $str )
 		{
 			$str = iconv('utf-8', 'us-ascii//TRANSLIT', $str);
 			return strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $str ) );
 		}
 
-		public static function toText( $str )
+		static function toText( $str )
 		{
 			return ucwords( str_replace( '-', ' ', $str ) );
 		}
 
-		public static function emptyOrNull( $str, $isNull=null )
+		static function emptyOrNull( $str, $isNull=null )
 		{
 			return isset( $str ) && !is_null( $str )? $str: $isNull;
 		}
 
-		public static function getFirstExplodeString( $delm, $string )
+		static function getFirstExplodeString( $delm, $string )
 		{
 			return explode( $delm, $string )[0];
 		}
 
-		public static function getEndExplodeString( $delm, $array )
+		static function getEndExplodeString( $delm, $array )
 		{
 			$array = explode( $delm, $array );
 
@@ -80,12 +80,12 @@
 
 		}
 
-		public static function php( $fn )
+		static function php( $fn )
 		{
 			return "<?php $fn ?>";
 		}
 
-		public static function removeItemOfArray( $index, $array )
+		static function removeItemOfArray( $index, $array )
 		{
 
 			$response = [];
@@ -111,7 +111,7 @@
 			return $response;
 		}
 
-		public static function countExplode( $delm, $array )
+		static function countExplode( $delm, $array )
 		{
 			$array = explode( $delm, $array );
 
