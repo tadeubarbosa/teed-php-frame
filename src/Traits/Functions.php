@@ -12,7 +12,7 @@
 
 			$action = substr( $meth, 0, 3 );
 
-			$name = substr( $meth, 3, strlen( $meth ) );
+			$name = strtolower( substr( $meth, 3, strlen( $meth ) ) );
 
 			if( $action == 'get' ):
 
@@ -49,6 +49,11 @@
 		static function getAllData()
 		{
 			return self::$data;
+		}
+
+		static function setAllData( $data )
+		{
+			self::$data = array_merge( self::$data, $data );
 		}
 
 	}
