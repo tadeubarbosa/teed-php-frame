@@ -8,6 +8,8 @@
 
 			if( !$other ):
 
+				if( !App::getDataDir() ) return;
+
 				$file_name = App::getDataDir($file_name);
 
 			endif;
