@@ -28,7 +28,7 @@
 
 			$attrs = '';
 
-			if( isset(self::$data['attrs']) && count(self::$data['attrs']) ):
+			if( isset( self::$data['attrs'] ) && count( self::$data['attrs'] ) ):
 
 				$attrs = ' ';
 
