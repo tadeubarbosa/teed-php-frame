@@ -5,7 +5,11 @@
 
 		static function json( $array )
 		{
+
+			header('Content-type:text/json');
+
 			echo json_encode( $array );
+
 		}
 
 		static function utf8($input)

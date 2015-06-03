@@ -34,8 +34,6 @@
 
 			$slug = '';
 
-			// $slug = String::toSlug( str_replace( App::getUri(), '', $file_name) ).'-';
-
 			$cached_file =  App::getCacheDir( $slug . sha1($file_name) );
 
 			if( !file_exists($file_name) || self::verifyDifference( $file_name, $cached_file ) ):
