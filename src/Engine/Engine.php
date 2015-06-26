@@ -78,7 +78,7 @@
 
 				$value[0] = str_replace( ['*'], ['(.*)'], $value[0] );
 
-				$value[0] = "/({$value[0]})/U";
+				$value[0] = "/({$value[0]})/" . (isset($value[2])? '': 'U');
 
 				$string = preg_replace( $value[0], $value[1], $string );
 
