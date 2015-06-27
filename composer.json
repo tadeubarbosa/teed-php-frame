@@ -1,0 +1,25 @@
+{
+	"name": "tadeubarbosa/teed-php-frame",
+	"authors":
+	[
+		{
+			"name":"Tadeu Barbosa",
+			"email":"tadeufbarbosa@gmail.com"
+		}
+	],
+	"autoload":
+	{
+		"psr-4":
+		{
+			"":"src/"
+		},
+		"classmap":
+		[
+			"src/Traits/",
+			"src/Helpers/",
+			"src/Brain/",
+			"src/Engine/",
+			"src/Library/"
+		]
+	}
+}
