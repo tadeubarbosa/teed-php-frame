@@ -51,7 +51,7 @@
 
 			//
 
-			if(!count($array)) return;
+			if(!count($array)) return [];
 
 			if( !is_array($array) ):
 
@@ -113,7 +113,7 @@
 
 						if( isset($value->name) ):
 
-							$value->slug = "{$attributes->id}-" . self::toSlug( $value->name );
+							$value->slug = "{$value->id}-" . self::toSlug( $value->name );
 
 						endif;
 
