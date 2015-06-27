@@ -5,18 +5,19 @@
 
 		static function toSlug( $str, $replace=[], $delimiter='-' )
 		{
+
 			if( !empty($replace) ):
 
 				$str = str_replace((array)$replace, ' ', $str);
 
 			endif;
 
-			// $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
-			// $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
-			// $clean = strtolower(trim($clean, '-'));
-			// $clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+			$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+			$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+			$clean = strtolower(trim($clean, '-'));
+			$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
 
-			return $str;
+			return $clean;
 		}
 
 		static function toText( $str )
@@ -76,7 +77,7 @@
 
 				foreach( $attributes as $key => &$value ):
 
-					if( is_object($value) && get_class($value) == 'ActiveRecord\\DateTime' ):
+					if( is_object($value) && get_class($value) ):
 
 						$newValue = [];
 
@@ -86,9 +87,13 @@
 
 						endforeach;
 
-						$value = $newValue['date'];
+						$value = isset($newValue['date'])? $newValue['date']: $newValue;
 
 					endif;
+
+				endforeach;
+
+				foreach( $attributes as $key => &$value ):
 
 					if( is_array($value) ):
 
@@ -96,7 +101,7 @@
 
 							if( !isset($attributes->$collum) ):
 
-								$attributes->$collum = $item;
+								$attributes->$collum = utf8_encode( $item );
 
 							endif;
 
@@ -104,13 +109,13 @@
 
 						endforeach;
 
-						if( isset($value['name']) ):
+						$value = (object) $value;
 
-							$value['slug'] = "{$attributes->id}-" . String::toSlug( $value->name, true );
+						if( isset($value->name) ):
+
+							$value->slug = "{$attributes->id}-" . self::toSlug( $value->name );
 
 						endif;
-
-						$value = (object) $value;
 
 					else:
 
@@ -118,15 +123,15 @@
 
 					endif;
 
-					if( isset($attributes->name) ):
-
-						$attributes->slug = "{$attributes->id}-" . String::toSlug( $attributes->name, true);
-
-					endif;
-
 				endforeach;
 
 				$row = (object) $attributes;
+
+				if( isset($row->name) ):
+
+					$row->slug = "{$row->id}-" . self::toSlug( $row->name );
+
+				endif;
 
 			endforeach;
 
