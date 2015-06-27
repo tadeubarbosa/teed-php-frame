@@ -11,12 +11,12 @@
 
 			endif;
 
-			$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
-			$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
-			$clean = strtolower(trim($clean, '-'));
-			$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+			// $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+			// $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+			// $clean = strtolower(trim($clean, '-'));
+			// $clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
 
-			return $clean;
+			return $str;
 		}
 
 		static function toText( $str )
@@ -44,83 +44,31 @@
 		static function getData( $array )
 		{
 
-			$response = [];
+			$joins = func_get_args();
 
-			$data = func_get_args();
+			array_shift( $joins );
 
-			array_shift( $data );
+			//
 
 			if(!count($array)) return;
 
-			if( is_array($array) ):
+			if( !is_array($array) ):
 
-				foreach( $array as &$row ):
+				$uniq = true;
 
-					$attributes = (object) $row->attributes();
+				$array = [$array];
 
-					if( count($data) ):
+			endif;
 
-						foreach( $data as $key ):
+			foreach( $array as &$row ):
 
-							$attributes->$key = $row->$key->attributes();
+				$attributes = (object) $row->attributes();
 
-						endforeach;
+				if( count($joins) ):
 
-					endif;
+					foreach( $joins as $key ):
 
-					foreach( $attributes as $key => &$value ):
-
-						if( is_array($value) ):
-
-							foreach( $value as $collum => &$item ):
-
-								if( !isset($attributes->$collum) ):
-
-									$attributes->$collum = $item;
-
-								endif;
-
-								$item = utf8_encode( $item );
-
-								if( $collum=='name' ):
-
-									$value['slug'] = "{$attributes->id}-" . String::toSlug( $item, true );
-
-								endif;
-
-							endforeach;
-
-							$value = (object) $value;
-
-						else:
-
-							$value = utf8_encode( $value );
-
-							if( $key=='name' ):
-
-								$attributes->slug = "{$attributes->id}-" . String::toSlug( $value, true );
-
-							endif;
-
-						endif;
-
-					endforeach;
-
-					$row = $attributes;
-
-				endforeach;
-
-				$response = $array;
-
-			else:
-
-				$attributes = $array->attributes();
-
-				if( count($data) ):
-
-					foreach( $data as $key ):
-
-						$attributes[$key] = $array->$key->attributes();
+						$attributes->$key = $row->$key->attributes();
 
 					endforeach;
 
@@ -128,25 +76,39 @@
 
 				foreach( $attributes as $key => &$value ):
 
+					if( is_object($value) && get_class($value) == 'ActiveRecord\\DateTime' ):
+
+						$newValue = [];
+
+						foreach( $value as $int => $item ):
+
+							$newValue[$int] = $item;
+
+						endforeach;
+
+						$value = $newValue['date'];
+
+					endif;
+
 					if( is_array($value) ):
 
 						foreach( $value as $collum => &$item ):
 
-							if( !isset($attributes[$collum]) ):
+							if( !isset($attributes->$collum) ):
 
-								$attributes[$collum] = $item;
+								$attributes->$collum = $item;
 
 							endif;
 
 							$item = utf8_encode( $item );
 
-							if( $collum=='name' ):
-
-								$value['slug'] = "{$attributes['id']}-" . String::toSlug( $item, true );
-
-							endif;
-
 						endforeach;
+
+						if( isset($value['name']) ):
+
+							$value['slug'] = "{$attributes->id}-" . String::toSlug( $value->name, true );
+
+						endif;
 
 						$value = (object) $value;
 
@@ -154,21 +116,27 @@
 
 						$value = utf8_encode( $value );
 
-						if( $key=='name' ):
+					endif;
 
-							$attributes['slug'] = "{$attributes['id']}-" . String::toSlug( $value, true );
+					if( isset($attributes->name) ):
 
-						endif;
+						$attributes->slug = "{$attributes->id}-" . String::toSlug( $attributes->name, true);
 
 					endif;
 
 				endforeach;
 
-				$response = (object) $attributes;
+				$row = (object) $attributes;
+
+			endforeach;
+
+			if( isset($uniq) ):
+
+				$array = $array[0];
 
 			endif;
 
-			return $response;
+			return $array;
 
 		}
 
