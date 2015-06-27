@@ -39,7 +39,7 @@
 
 						ob_get_clean();
 
-						return String::toObject( $vars) ;
+						return String::toObject( $vars);
 
 					else:
 

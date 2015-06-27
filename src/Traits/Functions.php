@@ -53,7 +53,9 @@
 
 		static function setAllData( $data )
 		{
+
 			self::$data = array_merge( self::$data, (array) $data );
+
 		}
 
 	}
