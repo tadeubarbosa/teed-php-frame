@@ -1,8 +1,19 @@
-# teed-php-frame
-A TeedPHP Framework
+<h2>TEEDPHP FRAMEWORK</h2>
 
-----
+<h4>Um Framework PHP para facilitar a criação de websites.</h4>
 
-Um Framework PHP para facilitar a criação de websites.
+<p align="center">
+  <img src="src/Resources/images/logo.png?raw=true" />
+</p>
 
-Para download vá até [github/tadeubarbosa/teed-php](https://github.com/tadeubarbosa/teed-php) e faça o download, instale o `composer` e dê um `composer install` em sua linha de comando (`cmd`).
+<hr>
+
+<h4> Para download: </h4>
+
+> $ git clone https://github.com/tadeubarbosa/teed-php
+
+ou faça o download manual, depois:
+
+> $ composer install
+
+> $ // Tudo pronto para iniciar
