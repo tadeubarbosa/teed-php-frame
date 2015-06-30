@@ -3,7 +3,7 @@
 <h4>Um Framework PHP para facilitar a criação de websites.</h4>
 
 <p align="center">
-  <img src="src/Resources/images/logo.png?raw=true" />
+  <img src="src/Resources/images/8234237489023844903.jpg?raw=true" />
 </p>
 
 <hr>
