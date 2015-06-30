@@ -14,8 +14,6 @@
 
 		['@includePartial(*)', String::php('Teed::includePartial($2)') ],
 
-		//
-
 		['@base(*)', String::php('echo App::getBase($2)') ],
 
 		['@image(*)', String::php('echo App::getImageDir($2)') ],
@@ -24,17 +22,23 @@
 
 		['@link(*)', String::php('echo App::getBase($2)') ],
 
-		//
-
 		['@if*', String::php('if$2:'), true ],
 
 		['@elseif*', String::php('elseif$2:'), true ],
 
+		['@if(*) * )', String::php('if($2) $3 ):') ],
+
+		['@if(*) )', String::php('if($2) ):') ],
+
+		['@if(*)', String::php('if($2):') ],
+
+		['@elseif(*) )', String::php('elseif($2) ):') ],
+
+		['@elseif(*)', String::php('elseif($2):') ],
+
 		['@else', String::php('else:') ],
 
 		['@endif', String::php('endif;') ],
-
-		//
 
 		['@foreach*', String::php('foreach$2:'), true ],
 
@@ -51,8 +55,6 @@
 		['@while*', String::php('while$2:'), true ],
 
 		['@endwhile', String::php('endwhile;') ],
-
-		//
 
 		['{{{ * }}}', '<?php $2; ?>' ],
 

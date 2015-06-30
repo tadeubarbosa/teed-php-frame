@@ -16,6 +16,7 @@
 		"classmap":
 		[
 			"src/Traits/",
+			"src/Exception/",
 			"src/Helpers/",
 			"src/Brain/",
 			"src/Engine/",
