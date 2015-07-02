@@ -53,19 +53,19 @@
 
 			self::$data['base'] = self::getBase();
 
-			//
-
 			Engine::$data['variables'] = self::$data;
+
+			//
 
 			$file_name = App::getViewsDir($file_name);
 
-			Engine::cacheTemplate( $file_name, true );
+			Engine::renderBody( $file_name );
 
 			///
 
-			$template = App::getTemplateDir('template.php');
+			$template = App::getTemplatesDir('template.php');
 
-			Engine::cacheTemplate( $template );
+			Engine::renderTemplate( $template );
 
 		}
 

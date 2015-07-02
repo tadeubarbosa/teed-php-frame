@@ -2,17 +2,19 @@
 
 	return [
 
-		['@setContent(*)',  String::php('Teed::setContent($2, function(){') ],
+		['@setContent(*)',  '{-- setcontent($2) --}' ],
 
-		['@endcontent',  String::php('} );') ],
+		['@endcontent',  '{-- endcontent --}' ],
 
-		['@getContent(*)',  String::php('Teed::getContent($2)') ],
+		['@getContent(*)',  '{-- getContent($2) --}' ],
 
-		['@template(*)', String::php('Teed::setTemplate($2)') ],
+		['@template(*)', '{-- setTemplate($2) --}' ],
 
-		['@include(*)', String::php('Teed::includeFile( App::getViewsDir() . $2 )') ],
+		['@include(*)', '{-- includeFile($2) --}' ],
 
-		['@includePartial(*)', String::php('Teed::includePartial($2)') ],
+		['@includePartial(*)', '{-- includePartial($2) --}' ],
+
+		//
 
 		['@base(*)', String::php('echo App::getBase($2)') ],
 

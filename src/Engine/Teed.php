@@ -3,19 +3,17 @@
 	class Teed
 	{
 
-		static function setContent( $content, $function )
+		static function setContent( $content, $str )
 		{
-			Engine::$data['content'][$content] = $function;
+			return Engine::$data['content'][$content] = $str;
 		}
 
 		static function getContent( $content )
 		{
 
-			if( !isset( Engine::$data['content'][$content] ) ) return;
+			if( !isset( Engine::$data['content'][$content] ) ) Engine::$data['content'][$content] = "";
 
-			$function = Engine::$data['content'][$content];
-
-			$function( Engine::$data['variables'] );
+			return Engine::$data['content'][$content];
 
 		}
 
@@ -50,20 +48,26 @@
 		static function includeFile( $file )
 		{
 
-			if( file_exists($file) ) return include Engine::cacheFile( $file );
+			$file = preg_replace('/(\.)/','/',$file);
 
-			echo Html::h3( "File not found: <em style=\"color:#777;\">{$file}</em>" )->class( 'error' );
+			$file = App::getSrcDir("{$file}.php");
+
+			return Engine::cacheFile($file);
 
 		}
 
 		static function includePartial( $file )
 		{
 
-			$file = str_replace('.','/',$file);
+			$file = preg_replace('/(\.)/','/',$file);
 
 			$file = App::getSrcDir("templates/{$file}.php");
 
-			include Engine::cacheFile($file);
+			if( !isset(Engine::$data['partials']) ) Engine::$data['partials'] = [];
+
+			Engine::$data['partials'][ $file ] = true;
+
+			return Engine::cacheFile($file);
 
 		}
 

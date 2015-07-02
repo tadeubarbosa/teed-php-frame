@@ -64,27 +64,29 @@
 
 					self::setTeedSrcDir( self::getTeedDir('src/') );
 
-			self::setWWWDir( self::getBase('www/') );
+			foreach( Files::getData('src/data/globals.php',true)['paths'] as $type => $path ):
 
-				self::setImageDir( self::getWWWDir('images/') );
+				if( $type == 'src' ):
 
-				self::setScriptDir( self::getWWWDir('jscript/') );
+					$pathname = App::getUri();
 
-				self::setCssDir( self::getWWWDir('css/') );
+				else:
 
-					self::setCssPagesDir( self::getCssDir('pages/') );
+					$pathname = App::getBase();
 
-			self::setSrcDir( self::getUri('src/') );
+				endif;
 
-			self::setDataDir( self::getSrcDir('data/') );
+				self::$data["{$type}dir"] = "{$pathname}{$type}/";
 
-			self::setViewsDir( self::getSrcDir('views/') );
+				foreach( $path as $name => $value ):
 
-			self::setTemplateDir( self::getSrcDir('templates/') );
+					if(!preg_match('/(\/$)/',$value)) $value .= '/';
 
-				self::setTemplateType( self::getTemplateDir('master/') );
+					self::$data["{$name}dir"] = "{$pathname}{$value}";
 
-			self::setCacheDir( self::getSrcDir('cache/') );
+				endforeach;
+
+			endforeach;
 
 		}
 

@@ -23,7 +23,7 @@
 
 			try{
 
-				if( !file_exists($file_name) || !is_file($file_name)) throw new TeedException();
+				if( empty($file_name) || !file_exists($file_name) || !is_file($file_name)) throw new TeedException();
 
 			}catch(TeedException $e)
 			{

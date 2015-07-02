@@ -5,9 +5,9 @@
 
 		static $data = [];
 
-		static function start( $get, $post )
+		static function start()
 		{
-			self::$data = array_merge( self::$data, $get, $post );
+			self::$data = array_merge( self::$data, $_GET, $_POST );
 		}
 
 		static function getAllData()
