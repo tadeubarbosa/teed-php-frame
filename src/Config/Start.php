@@ -39,4 +39,5 @@
 	/////
 	/// INIT ROUTE
 	require_once App::getSrcDir('routes.php');
+
 	App::initTemplateRouting();
