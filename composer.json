@@ -1,0 +1,35 @@
+{
+	"name": "tadeubarbosa/teed-php-frame",
+	"authors":
+	[
+		{
+			"name":"Tadeu Barbosa",
+			"email":"tadeufbarbosa@gmail.com"
+		}
+	],
+	"require":
+	{
+		"symfony/var-dumper": "^3.0@dev"
+	},
+	"autoload":
+	{
+		"psr-4":
+		{
+			"":"src/"
+		},
+		"classmap":
+		[
+			"src/Traits/",
+			"src/Exception/",
+			"src/Helpers/",
+			"src/Brain/",
+			"src/Engine/",
+			"src/Library/"
+		],
+		"files":
+		[
+			"src/Config/Start.php",
+			"src/Config/DataBase.php"
+		]
+	}
+}
