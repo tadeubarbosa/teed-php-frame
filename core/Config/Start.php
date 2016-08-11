@@ -50,4 +50,5 @@
 
 	App::confTemplateRoutes();
 
+	# Inicializa o TeedCss
 	TeedCss\Initialize::start();
