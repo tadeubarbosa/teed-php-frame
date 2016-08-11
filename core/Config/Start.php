@@ -48,7 +48,7 @@
 	# Busca pelas rotas setadas pelo programador
 	require_once Dir::getSrc('routes.php');
 
-	App::confTemplateRoutes();
-
 	# Inicializa o TeedCss
 	TeedCss\Initialize::start();
+
+	App::confTemplateRoutes();
