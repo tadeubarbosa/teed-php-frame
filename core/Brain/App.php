@@ -45,7 +45,7 @@
 
 			Dir::setVendor( self::getUri('vendor/') );
 
-			Dir::setCore( self::getUri('core/') );
+			Dir::setCore( self::getUri('vendor/tadeubarbosa/teed-php-frame/core/') );
 
 			foreach( Files::getData('src/data/globals.php',true)['paths'] as $type => $path )
 			{
