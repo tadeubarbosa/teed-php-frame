@@ -57,4 +57,9 @@
 
 		}
 
+		public static function getAllData()
+		{
+			return self::$data;
+		}
+
 	}
