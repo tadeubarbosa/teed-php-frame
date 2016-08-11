@@ -7,29 +7,24 @@
 			"email":"tadeufbarbosa@gmail.com"
 		}
 	],
-	"require":
-	{
-		"symfony/var-dumper": "^3.0@dev"
-	},
 	"autoload":
 	{
 		"psr-4":
 		{
-			"":"src/"
+			"":"core/"
 		},
 		"classmap":
 		[
-			"src/Traits/",
-			"src/Exception/",
-			"src/Helpers/",
-			"src/Brain/",
-			"src/Engine/",
-			"src/Library/"
-		],
-		"files":
-		[
-			"src/Config/Start.php",
-			"src/Config/DataBase.php"
+			"core/Traits/",
+			"core/Exception/",
+			"core/Helpers/",
+			"core/Brain/",
+			"core/Engine/",
+			"core/Controller/",
+			"core/Library/",
+			"src/library/",
+			"src/controller/",
+			"src/service/"
 		]
 	}
 }
