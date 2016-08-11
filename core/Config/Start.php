@@ -49,3 +49,5 @@
 	require_once Dir::getSrc('routes.php');
 
 	App::confTemplateRoutes();
+
+	TeedCss\Initialize::start();
