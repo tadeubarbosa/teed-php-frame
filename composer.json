@@ -21,10 +21,11 @@
 			"core/Brain/",
 			"core/Engine/",
 			"core/Controller/",
-			"core/Library/",
-			"src/library/",
-			"src/controller/",
-			"src/service/"
+			"core/Library/"
+		],
+		"files":
+		[
+			"core/Config/Start.php"
 		]
 	}
 }
